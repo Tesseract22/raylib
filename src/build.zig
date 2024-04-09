@@ -259,12 +259,12 @@ pub fn build(b: *std.Build) !void {
 
     const lib = try addRaylib(b, target, optimize, options);
 
-    lib.installHeader("src/raylib.h", "raylib.h");
-    lib.installHeader("src/raymath.h", "raymath.h");
-    lib.installHeader("src/rlgl.h", "rlgl.h");
+    lib.installHeader(.{ .path = "src/raylib.h" }, "raylib.h");
+    lib.installHeader(.{ .path = "src/raymath.h" }, "raymath.h");
+    lib.installHeader(.{ .path = "src/rlgl.h" }, "rlgl.h");
 
     if (options.raygui) {
-        lib.installHeader("../raygui/src/raygui.h", "raygui.h");
+        lib.installHeader(.{.path = "../raygui/src/raygui.h"}, "raygui.h");
     }
 
     b.installArtifact(lib);
